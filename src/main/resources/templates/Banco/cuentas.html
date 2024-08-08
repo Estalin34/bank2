@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Cuentas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        a {
+            color: #3498db;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table th, table td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+        table th {
+            background-color: #3498db;
+            color: white;
+        }
+        table tr:hover {
+            background-color: #f1f1f1;
+        }
+        .actions a {
+            margin-right: 5px;
+        }
+        .add-new {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .add-new:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Lista de Cuentas</h1>
+    <a href="#" class="add-new" th:href="@{/cuentas/nuevo}">Agregar Nueva Cuenta</a>
+    <table>
+        <thead>
+        <tr>
+            <th>Número de Cuenta</th>
+            <th>Saldo</th>
+            <th>Cliente</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="cuenta : ${cuentas}">
+            <td th:text="${cuenta.numeroCuenta}">Número de Cuenta</td>
+            <td th:text="${cuenta.saldo}">Saldo</td>
+            <td th:text="${cuenta.cliente.nombre} + ' ' + ${cuenta.cliente.apellido}">Cliente</td>
+            <td class="actions">
+                <a th:href="@{/cuentas/{id}(id=${cuenta.id})}">Editar</a>
+                <a th:href="@{/cuentas/eliminar/{id}(id=${cuenta.id})}">Eliminar</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

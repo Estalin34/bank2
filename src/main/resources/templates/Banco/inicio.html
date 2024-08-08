@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - Banco</title>
+    <link rel="icon" href="https://example.com/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@300;600&display=swap" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f7f9;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #003d7a;
+            color: #fff;
+            padding: 15px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .navbar-brand {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .navbar-nav {
+            margin-left: auto;
+        }
+        .navbar-nav .nav-item {
+            margin: 0 10px;
+        }
+        .navbar-nav .nav-link {
+            color: #fff !important;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+        .navbar-nav .nav-link:hover {
+            color: #e0e0e0 !important;
+            text-decoration: none;
+        }
+        .navbar-nav .nav-link i {
+            margin-right: 5px;
+        }
+        .hero-section {
+            background: url('https://www.bancodelpacifico.com/BancoPacifico/media/Personas/CanalesAtencion/canales-BancaVirtualIntermatico.jpg?ext=.jpg') no-repeat center center;
+            background-size: cover;
+            color: #fff;
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+        .hero-section .container {
+            position: relative;
+            z-index: 2;
+        }
+        .hero-section h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .hero-section p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+        .cta-button {
+            font-size: 18px;
+            padding: 10px 20px;
+            color: #fff;
+            background-color: #0062cc;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .cta-button:hover {
+            background-color: #004ba0;
+            transform: scale(1.05);
+        }
+        .services-section {
+            padding: 60px 0;
+            background-color: #ffffff;
+        }
+        .services-section h2 {
+            font-size: 28px;
+            margin-bottom: 40px;
+            text-align: center;
+            color: #003d7a;
+            font-weight: bold;
+        }
+        .service-card {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+        }
+        .service-card img {
+            max-width: 100px;
+            height: auto;
+            margin-bottom: 15px;
+            border-radius: 50%;
+            transition: transform 0.3s;
+        }
+        .service-card img:hover {
+            transform: scale(1.1);
+        }
+        .footer {
+            background-color: #003d7a;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+<header class="header">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="#">BANCO</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#" th:href="@{/clientes}"><i class="fas fa-users"></i> Clientes</a>
+                    <a class="nav-link" href="#" th:href="@{/formularios}"><i class="fas fa-edit"></i> Formulario
+                    </a>
+
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-cogs"></i> Servicios
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#" th:href="@{/cuentas}">Cuenta Ahorro</a>
+                        <a class="dropdown-item" href="#" th:href="@{/prestamos}">Préstamos</a>
+                        <a class="dropdown-item" href="#" th:href="@{/transacciones}">Transacciones</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" th:href="@{/informacion}"><i class="fas fa-info-circle"></i> Información</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<section class="hero-section">
+    <div class="container">
+        <h1>Bienvenido al Banco</h1>
+        <p>Tu mejor opción en servicios financieros</p>
+        <a href="#" class="cta-button">Explora Nuestros Servicios</a>
+    </div>
+</section>
+<section class="services-section">
+    <div class="container">
+        <h2>Nuestros Servicios</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="service-card">
+                    <img src="https://www.bancodelpacifico.com/BancoPacifico/media/Personas/servicios/servicios-OPP2.jpg?ext=.jpg" alt="Cuenta Ahorro">
+                    <h3>Cuenta Ahorro</h3>
+                    <p>Gestiona tu dinero con facilidad y seguridad.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="service-card">
+                    <img src="https://www.bancodelpacifico.com/BancoPacifico/media/Personas/servicios/servicios-PagoDeServiciosConDebitoACuenta.jpg?ext=.jpg" alt="Préstamos Personales">
+                    <h3>Préstamos Personales</h3>
+                    <p>Obtén el financiamiento que necesitas con condiciones favorables.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="service-card">
+                    <img src="https://www.bancodelpacifico.com/BancoPacifico/media/Personas/servicios/servicios-TransferenciaAutomaticaDeFondos2.jpg?ext=.jpg" alt="Inversiones">
+                    <h3>Inversiones</h3>
+                    <p>Invierte en oportunidades seguras y rentables.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="footer">
+    <p>&copy; 2024 Banco Ejemplo. Todos los derechos reservados.</p>
+</footer>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

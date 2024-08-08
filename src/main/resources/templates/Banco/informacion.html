@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #e9ecef;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #003366;
+            color: #fff;
+            padding: 15px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .navbar-brand {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .navbar-nav .nav-link {
+            color: #fff !important;
+            margin-right: 15px;
+            transition: color 0.3s;
+        }
+        .navbar-nav .nav-link:hover {
+            color: #ddd !important;
+        }
+        .hero-section {
+            background: url('https://www.bancodelpacifico.com/BancoPacifico/media/headers/header-sec-servicios.jpg') no-repeat center center;
+            background-size: cover;
+            color: #fff;
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+        .hero-section h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+        }
+        .hero-section p {
+            font-size: 20px;
+            position: relative;
+            z-index: 2;
+        }
+        .content {
+            padding: 20px;
+        }
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            overflow: hidden;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+        .card img {
+            border-radius: 10px 10px 0 0;
+            height: 200px;
+            object-fit: cover;
+            width: 100%;
+        }
+        .card-body {
+            padding: 20px;
+        }
+        .footer {
+            background-color: #003366;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        .contact-info, .vision-mission-info {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .contact-info h2, .vision-mission-info h2 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 22px;
+            color: #333;
+        }
+        .contact-info p, .vision-mission-info p {
+            margin-bottom: 10px;
+        }
+        .contact-info iframe {
+            border: 0;
+            border-radius: 10px;
+        }
+        .vision-mission-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .vision-mission-card {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .vision-mission-card img {
+            height: 200px;
+            object-fit: cover;
+            width: 100%;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+<header class="header">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="/"><i class="fas fa-building"></i> Banco</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="#servicios">Servicios</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+                <li class="nav-item"><a class="nav-link" href="#vision-mision">Visión y Misión</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<section id="inicio" class="hero-section">
+    <div class="container">
+        <h1>Bienvenido al Banco</h1>
+        <p>Comprometidos con tu bienestar financiero</p>
+    </div>
+</section>
+<div class="container content">
+    <div id="servicios" class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <img src="https://media.istockphoto.com/id/1415838837/es/foto/fila-de-personas-al-cajero-del-banco-cajero-fondo-desenfocado.jpg?s=2048x2048&w=is&k=20&c=HhkFoZl8NCTM3P3yYppJZtCV4sbtuB2PRrF3k4simpI=" class="card-img-top" alt="Servicios Financieros">
+                <div class="card-body">
+                    <h5 class="card-title">Servicios Financieros</h5>
+                    <p class="card-text">Ofrecemos una amplia gama de servicios financieros adaptados a tus necesidades. Desde cuentas de ahorro hasta préstamos personalizados, estamos aquí para ayudarte a alcanzar tus objetivos financieros.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <img src="https://colombia.unir.net/wp-content/uploads/sites/4/2022/05/sign-here-picture-id1282395437-1-1.jpg" class="card-img-top" alt="Más Información">
+                <div class="card-body">
+                    <h5 class="card-title">Más Información</h5>
+                    <p class="card-text">Conoce más sobre nuestros productos y servicios, así como nuestras políticas y compromiso con la calidad. Nuestro objetivo es ofrecerte la mejor experiencia bancaria.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="vision-mision" class="vision-mission-info">
+        <h2>Visión y Misión</h2>
+        <div class="vision-mission-card">
+            <h3>Visión</h3>
+            <p>Ser el banco líder en soluciones financieras innovadoras, reconocido por su excelencia en el servicio al cliente y su contribución al desarrollo económico sostenible.</p>
+            <img src="https://www.bancodelpacifico.com/BancoPacifico/media/headers/header-sec-inversiones2.jpg" alt="Visión">
+        </div>
+        <div class="vision-mission-card">
+            <h3>Misión</h3>
+            <p>Proporcionar servicios financieros de alta calidad que superen las expectativas de nuestros clientes, apoyando su crecimiento personal y empresarial con integridad y compromiso.</p>
+            <img src="https://cdn.unotv.com/images/2023/08/historia-de-los-bancos-030900-1024x576.jpg" alt="Misión">
+        </div>
+    </div>
+    <div id="contacto" class="contact-info">
+        <h2>Contacto</h2>
+        <p><strong>Teléfono:</strong> +123 456 7890</p>
+        <p><strong>Email:</strong> contacto@banco.com</p>
+        <p><strong>Dirección:</strong> Calle Ejemplo 123, Ciudad, País</p>
+        <p><strong>Mapa:</strong></p>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.1443395528967!2d-122.41941508468132!3d37.77492977975937!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085808f5a5e7b6b%3A0x4bcb244c4b393f24!2sSan%20Francisco%2C%20CA!5e0!3m2!1ses!2sus!4v1607730707153!5m2!1ses!2sus" width="100%" height="300" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+    </div>
+</div>
+<footer class="footer">
+    <p>&copy; 2024 Banco. Todos los derechos reservados.</p>
+</footer>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

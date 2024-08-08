@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Garantías</title>
+</head>
+<body>
+<h1>Lista de Garantías</h1>
+<a th:href="@{/garantias/nuevo}">Agregar Nueva Garantía</a>
+<table>
+    <thead>
+    <tr>
+        <th>Descripción</th>
+        <th>Valor</th>
+        <th>Cliente</th>
+        <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="garantia : ${garantias}">
+        <td th:text="${garantia.descripcion}">Descripción</td>
+        <td th:text="${garantia.valor}">Valor</td>
+        <td th:text="${garantia.cliente.nombre} + ' ' + ${garantia.cliente.apellido}">Cliente</td>
+        <td>
+            <a th:href="@{/garantias/{id}(id=${garantia.id})}">Editar</a>
+            <a th:href="@{/garantias/eliminar/{id=${garantia.id})}">Eliminar</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

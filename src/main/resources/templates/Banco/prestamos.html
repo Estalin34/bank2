@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Préstamos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .actions a {
+            margin-right: 10px;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 15px;
+            color: #fff;
+            background-color: #007BFF;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<h1>Lista de Préstamos</h1>
+<a class="button" th:href="@{/prestamos/nuevo}">Agregar Nuevo Préstamo</a>
+<table>
+    <thead>
+    <tr>
+        <th>Descripción</th>
+        <th>Monto</th>
+        <th>Cliente</th>
+        <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="prestamo : ${prestamos}">
+        <td th:text="${prestamo.descripcion}">Descripción</td>
+        <td th:text="${prestamo.monto}">Monto</td>
+        <td th:text="${prestamo.cliente.nombre} + ' ' + ${prestamo.cliente.apellido}">Cliente</td>
+        <td class="actions">
+            <a th:href="@{/prestamos/{id}(id=${prestamo.id})}">Editar</a>
+            <a th:href="@{/prestamos/eliminar/{id}(id=${prestamo.id})}">Eliminar</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
