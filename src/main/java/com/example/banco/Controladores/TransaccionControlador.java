@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/transacciones")
 public class TransaccionControlador {
 
     @Autowired
@@ -20,37 +19,38 @@ public class TransaccionControlador {
     @Autowired
     private CuentaServicio cuentaServicio;
 
-    @GetMapping
+    @GetMapping("/transacciones")
     public String listarTransacciones(Model model) {
         model.addAttribute("transacciones", transaccionServicio.listarTodas());
-        return "transacciones";
+        return "transacciones"; // Este debe ser el nombre del archivo sin la extensión .html
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/transacciones/{id}")
     public String obtenerTransaccion(@PathVariable Long id, Model model) {
         Optional<Transaccion> transaccion = transaccionServicio.obtenerPorId(id);
         if (transaccion.isPresent()) {
             model.addAttribute("transaccion", transaccion.get());
             model.addAttribute("cuentas", cuentaServicio.listarTodas());
-            return "formularioTransaccion"; // Debes crear esta plantilla si es necesaria
+            return "formularioTransaccion"; // Nombre del archivo sin la extensión .html
         }
         return "redirect:/transacciones";
     }
 
-    @GetMapping("/nuevo")
+
+    @GetMapping("/transacciones/nueva")
     public String nuevaTransaccion(Model model) {
         model.addAttribute("transaccion", new Transaccion());
         model.addAttribute("cuentas", cuentaServicio.listarTodas());
-        return "formularioTransaccion"; // Debes crear esta plantilla si es necesaria
+        return "formularioTransaccion"; // Este debe ser el nombre del archivo sin la extensión .html
     }
 
-    @PostMapping
+    @PostMapping("/transacciones")
     public String guardarTransaccion(@ModelAttribute Transaccion transaccion) {
         transaccionServicio.guardar(transaccion);
         return "redirect:/transacciones";
     }
 
-    @GetMapping("/eliminar/{id}")
+    @GetMapping("/transacciones/eliminar/{id}")
     public String eliminarTransaccion(@PathVariable Long id) {
         transaccionServicio.eliminar(id);
         return "redirect:/transacciones";

@@ -10,6 +10,7 @@ import java.util.Optional;
 
 @Service
 public class PrestamoServicio {
+
     @Autowired
     private PrestamoRepositorio prestamoRepositorio;
 
@@ -17,12 +18,12 @@ public class PrestamoServicio {
         return prestamoRepositorio.findAll();
     }
 
-    public Prestamo guardar(Prestamo prestamo) {
-        return prestamoRepositorio.save(prestamo);
-    }
-
     public Optional<Prestamo> obtenerPorId(Long id) {
         return prestamoRepositorio.findById(id);
+    }
+
+    public void guardar(Prestamo prestamo) {
+        prestamoRepositorio.save(prestamo);
     }
 
     public void eliminar(Long id) {

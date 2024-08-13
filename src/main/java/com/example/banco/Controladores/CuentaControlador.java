@@ -1,57 +1,59 @@
 package com.example.banco.Controladores;
 
 import com.example.banco.Entidad.Cuenta;
-import com.example.banco.Servicios.ClienteServicio;
 import com.example.banco.Servicios.CuentaServicio;
+import com.example.banco.Servicios.ClienteServicio; // Asegúrate de tener este servicio disponible
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
-
 @Controller
-@RequestMapping("/cuentas")
 public class CuentaControlador {
 
     @Autowired
     private CuentaServicio cuentaServicio;
 
     @Autowired
-    private ClienteServicio clienteServicio;
+    private ClienteServicio clienteServicio; // Servicio para obtener los clientes
 
-    @GetMapping
-    public String listarCuentas(Model model) {
+    // Listar todas las cuentas
+    @GetMapping("/cuentas")
+    public String listar(Model model) {
         model.addAttribute("cuentas", cuentaServicio.listarTodas());
         return "cuentas";
     }
 
-    @GetMapping("/{id}")
-    public String obtenerCuenta(@PathVariable Long id, Model model) {
-        Optional<Cuenta> cuenta = cuentaServicio.obtenerPorId(id);
-        if (cuenta.isPresent()) {
-            model.addAttribute("cuenta", cuenta.get());
-            model.addAttribute("clientes", clienteServicio.listarTodos());
-            return "formularioCuenta"; // Debes crear esta plantilla si es necesaria
-        }
-        return "redirect:/cuentas";
-    }
-
-    @GetMapping("/nuevo")
-    public String nuevaCuenta(Model model) {
+    // Mostrar el formulario para crear una nueva cuenta
+    @GetMapping("/cuentas/nueva")
+    public String mostrarFormulario(Model model) {
         model.addAttribute("cuenta", new Cuenta());
-        model.addAttribute("clientes", clienteServicio.listarTodos());
-        return "formularioCuenta"; // Debes crear esta plantilla si es necesaria
+        model.addAttribute("clientes", clienteServicio.listarTodos()); // Añadir la lista de clientes al modelo
+        return "formulario_cuenta";
     }
 
-    @PostMapping
-    public String guardarCuenta(@ModelAttribute Cuenta cuenta) {
+    // Guardar una cuenta (nueva o editada)
+    @PostMapping("/cuentas")
+    public String guardar(@ModelAttribute Cuenta cuenta) {
         cuentaServicio.guardar(cuenta);
         return "redirect:/cuentas";
     }
 
-    @GetMapping("/eliminar/{id}")
-    public String eliminarCuenta(@PathVariable Long id) {
+    // Mostrar el formulario para editar una cuenta existente
+    @GetMapping("/cuentas/editar/{id}")
+    public String mostrarFormularioEdicion(@PathVariable Long id, Model model) {
+        Cuenta cuenta = cuentaServicio.obtenerPorId(id);
+        if (cuenta != null) {
+            model.addAttribute("cuenta", cuenta);
+            model.addAttribute("clientes", clienteServicio.listarTodos()); // Añadir la lista de clientes al modelo
+            return "formulario_cuenta";
+        }
+        return "redirect:/cuentas";
+    }
+
+    // Eliminar una cuenta
+    @GetMapping("/cuentas/eliminar/{id}")
+    public String eliminar(@PathVariable Long id) {
         cuentaServicio.eliminar(id);
         return "redirect:/cuentas";
     }

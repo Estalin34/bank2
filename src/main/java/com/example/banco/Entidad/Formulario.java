@@ -11,7 +11,6 @@ import lombok.Data;
 @Data
 @Entity
 public class Formulario {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -30,6 +29,4 @@ public class Formulario {
 
     @Email(message = "El correo electrónico debe ser válido")
     private String correoElectronico;
-
-    // Getters y Setters
 }

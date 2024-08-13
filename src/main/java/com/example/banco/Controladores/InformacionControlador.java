@@ -2,14 +2,13 @@ package com.example.banco.Controladores;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/informacion")
 public class InformacionControlador {
 
-    @GetMapping
+    // Mostrar la página de información
+    @GetMapping("/informacion")
     public String showInformacion() {
-        return "informacion"; // Se espera que el archivo se llame informacion.html
+        return "informacion"; // Asegúrate de que el nombre del archivo Thymeleaf es informacion.html
     }
 }

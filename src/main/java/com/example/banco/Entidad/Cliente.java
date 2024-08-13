@@ -13,14 +13,14 @@ public class Cliente {
     private String nombre;
     private String apellido;
     private String email;
-    private String cedula; // Añadido el campo cedula
+    private String cedula;
 
-    @OneToMany(mappedBy = "cliente")
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Cuenta> cuentas;
 
-    @OneToMany(mappedBy = "cliente")
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Prestamo> prestamos;
 
-    @OneToMany(mappedBy = "cliente")
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Garantia> garantias;
 }

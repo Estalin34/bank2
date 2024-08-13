@@ -9,11 +9,11 @@ public class Garantia {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String descripcion;
+    private Double valor;  // Nuevo atributo para almacenar el valor de la garantía
 
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
-
-    // Getters y Setters
 }

@@ -5,9 +5,11 @@
     <title>Formulario de Registro</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        /* Tus estilos personalizados */
         body {
             background-color: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
         .navbar {
             background-color: #007bff;
@@ -23,23 +25,25 @@
             padding: 30px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
         }
         .btn-custom {
             background-color: #007bff;
             color: #fff;
+            border: none;
         }
         .btn-custom:hover {
             background-color: #0056b3;
             color: #fff;
         }
         .footer {
-            background-color: #007bff;
+                background-color: #003d7a;
             color: #fff;
+            padding: 20px;
             text-align: center;
-            padding: 10px 0;
-            position: absolute;
-            width: 100%;
-            bottom: 0;
+            margin-top: 40px;
+
         }
         .footer a {
             color: #fff;
@@ -51,42 +55,39 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark">
-    <a class="navbar-brand" href="#">Banco</a>
-    <!-- Resto del navbar -->
+    <a class="navbar-brand" th:href="@{/}">Banco del Pacífico</a>
 </nav>
 
-<div class="container mt-5">
+<div class="container mt-5 mb-auto">
     <div class="form-container">
-        <h1 class="text-center">Formulario de Registro</h1>
+        <h1 class="text-center mb-4">Formulario de Registro</h1>
         <form th:action="@{/formularios}" th:object="${formulario}" method="post">
             <div class="form-group">
                 <label for="nombre">Nombre</label>
-                <input type="text" id="nombre" th:field="*{nombre}" class="form-control"/>
+                <input type="text" id="nombre" th:field="*{nombre}" class="form-control" placeholder="Introduce tu nombre" required/>
                 <div class="text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
             </div>
             <div class="form-group">
                 <label for="apellido">Apellido</label>
-                <input type="text" id="apellido" th:field="*{apellido}" class="form-control"/>
+                <input type="text" id="apellido" th:field="*{apellido}" class="form-control" placeholder="Introduce tu apellido" required/>
                 <div class="text-danger" th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></div>
             </div>
             <div class="form-group">
                 <label for="cedula">Cédula</label>
-                <input type="text" id="cedula" th:field="*{cedula}" class="form-control"/>
+                <input type="text" id="cedula" th:field="*{cedula}" class="form-control" placeholder="Introduce tu cédula" required/>
                 <div class="text-danger" th:if="${#fields.hasErrors('cedula')}" th:errors="*{cedula}"></div>
             </div>
             <div class="form-group">
                 <label for="numeroCuenta">Número de Cuenta</label>
-                <input type="text" id="numeroCuenta" th:field="*{numeroCuenta}" class="form-control"/>
+                <input type="text" id="numeroCuenta" th:field="*{numeroCuenta}" class="form-control" placeholder="Introduce tu número de cuenta" required/>
                 <div class="text-danger" th:if="${#fields.hasErrors('numeroCuenta')}" th:errors="*{numeroCuenta}"></div>
             </div>
             <div class="form-group">
                 <label for="correoElectronico">Correo Electrónico</label>
-                <input type="email" id="correoElectronico" th:field="*{correoElectronico}" class="form-control"/>
+                <input type="email" id="correoElectronico" th:field="*{correoElectronico}" class="form-control" placeholder="Introduce tu correo electrónico" required/>
                 <div class="text-danger" th:if="${#fields.hasErrors('correoElectronico')}" th:errors="*{correoElectronico}"></div>
             </div>
-            <button type="submit" class="btn btn-custom">Enviar</button>
-
-
+            <button type="submit" class="btn btn-custom btn-block">Enviar</button>
         </form>
     </div>
 </div>

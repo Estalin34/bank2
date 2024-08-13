@@ -12,6 +12,7 @@ public class Transaccion {
     private Long id;
     private Double monto;
     private Date fecha;
+    private String descripcion;
     private String tipo;
 
     @ManyToOne

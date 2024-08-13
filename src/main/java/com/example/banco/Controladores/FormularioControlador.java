@@ -11,7 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import java.io.IOException;
 
 @Controller
@@ -31,23 +32,15 @@ public class FormularioControlador {
 
     @PostMapping("/formularios")
     public String procesarFormulario(@ModelAttribute Formulario formulario, Model model) {
-        formularioServicio.guardar(formulario); // Guarda el formulario en la base de datos
-        model.addAttribute("mensaje", "Formulario enviado exitosamente!");
-        return "redirect:/confirmacion"; // Redirige a la vista de confirmación
+        formularioServicio.guardar(formulario);
+        return "redirect:/confirmacion?idFormulario=" + formulario.getId();
     }
 
     @GetMapping("/confirmacion")
-    public String mostrarConfirmacion() {
-        return "confirmacion"; // Vista de confirmación
+    public String mostrarConfirmacion(@RequestParam Long idFormulario, Model model) {
+        model.addAttribute("idFormulario", idFormulario);
+        return "pantalla";
     }
 
-    @GetMapping("/generar-pdf")
-    public void generarPdf(HttpServletResponse response) throws IOException, DocumentException {
-        Formulario formulario = formularioServicio.obtenerUltimoFormulario(); // Obtén el formulario más reciente o el necesario
-        byte[] pdfBytes = pdfServicio.generarPdf(formulario);
-
-        response.setContentType("application/pdf");
-        response.setHeader("Content-Disposition", "attachment; filename=formulario.pdf");
-        response.getOutputStream().write(pdfBytes);
     }
-}
+

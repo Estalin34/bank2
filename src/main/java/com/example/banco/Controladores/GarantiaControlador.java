@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/garantias")
 public class GarantiaControlador {
 
     @Autowired
@@ -20,37 +19,42 @@ public class GarantiaControlador {
     @Autowired
     private ClienteServicio clienteServicio;
 
-    @GetMapping
+    // Listar todas las garantías
+    @GetMapping("/garantias")
     public String listarGarantias(Model model) {
         model.addAttribute("garantias", garantiaServicio.listarTodas());
-        return "garantias";
+        return "garantias"; // Asegúrate de que el nombre del archivo Thymeleaf es garantias.html
     }
 
-    @GetMapping("/{id}")
+    // Mostrar una garantía específica por ID
+    @GetMapping("/garantias/{id}")
     public String obtenerGarantia(@PathVariable Long id, Model model) {
         Optional<Garantia> garantia = garantiaServicio.obtenerPorId(id);
         if (garantia.isPresent()) {
             model.addAttribute("garantia", garantia.get());
             model.addAttribute("clientes", clienteServicio.listarTodos());
-            return "formularioGarantia"; // Debes crear esta plantilla si es necesaria
+            return "formularioGarantia"; // Asegúrate de que el nombre del archivo Thymeleaf es formularioGarantia.html
         }
-        return "redirect:/garantias";
+        return "redirect:/garantias"; // Redirige si no se encuentra la garantía
     }
 
-    @GetMapping("/nuevo")
+    // Mostrar el formulario para crear una nueva garantía
+    @GetMapping("/garantias/nueva")
     public String nuevaGarantia(Model model) {
         model.addAttribute("garantia", new Garantia());
         model.addAttribute("clientes", clienteServicio.listarTodos());
-        return "formularioGarantia"; // Debes crear esta plantilla si es necesaria
+        return "formularioGarantia"; // Asegúrate de que el nombre del archivo Thymeleaf es formularioGarantia.html
     }
 
-    @PostMapping
+    // Guardar una garantía (nueva o editada)
+    @PostMapping("/garantias")
     public String guardarGarantia(@ModelAttribute Garantia garantia) {
         garantiaServicio.guardar(garantia);
         return "redirect:/garantias";
     }
 
-    @GetMapping("/eliminar/{id}")
+    // Eliminar una garantía
+    @GetMapping("/garantias/eliminar/{id}")
     public String eliminarGarantia(@PathVariable Long id) {
         garantiaServicio.eliminar(id);
         return "redirect:/garantias";

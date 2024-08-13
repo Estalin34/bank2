@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio - Banco</title>
+    <title>Banco De Pacífico</title>
     <link rel="icon" href="https://example.com/favicon.ico" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@300;600&display=swap" rel="stylesheet">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             background-color: #f4f7f9;
             margin: 0;
             padding: 0;
         }
         .header {
-            background-color: #003d7a;
+            background: linear-gradient(90deg, #003d7a, #007bb5);
             color: #fff;
             padding: 15px 0;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -32,7 +32,7 @@
             margin: 0 10px;
         }
         .navbar-nav .nav-link {
-            color: #fff !important;
+            color: #f1f1f1 !important;
             font-size: 16px;
             transition: color 0.3s;
         }
@@ -40,8 +40,14 @@
             color: #e0e0e0 !important;
             text-decoration: none;
         }
-        .navbar-nav .nav-link i {
-            margin-right: 5px;
+        .navbar-nav .dropdown-menu {
+            background-color: #003d7a;
+        }
+        .navbar-nav .dropdown-item {
+            color: #fff !important;
+        }
+        .navbar-nav .dropdown-item:hover {
+            background-color: #004ba0;
         }
         .hero-section {
             background: url('https://www.bancodelpacifico.com/BancoPacifico/media/Personas/CanalesAtencion/canales-BancaVirtualIntermatico.jpg?ext=.jpg') no-repeat center center;
@@ -70,26 +76,27 @@
             z-index: 2;
         }
         .hero-section h1 {
-            font-size: 42px;
+            font-size: 48px;
             margin-bottom: 20px;
             font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
         .hero-section p {
             font-size: 20px;
             margin-bottom: 30px;
         }
         .cta-button {
-            font-size: 18px;
-            padding: 10px 20px;
+            font-size: 20px;
+            padding: 12px 24px;
             color: #fff;
-            background-color: #0062cc;
+            background-color: #ff6600;
             border: none;
-            border-radius: 5px;
+            border-radius: 50px;
             text-decoration: none;
             transition: background-color 0.3s, transform 0.3s;
         }
         .cta-button:hover {
-            background-color: #004ba0;
+            background-color: #e65c00;
             transform: scale(1.05);
         }
         .services-section {
@@ -109,7 +116,7 @@
             border-radius: 10px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
-            text-align: center;
+            text-align: left;
             transition: transform 0.3s, box-shadow 0.3s;
         }
         .service-card:hover {
@@ -117,7 +124,7 @@
             box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
         }
         .service-card img {
-            max-width: 100px;
+            max-width: 80px;
             height: auto;
             margin-bottom: 15px;
             border-radius: 50%;
@@ -126,12 +133,41 @@
         .service-card img:hover {
             transform: scale(1.1);
         }
+        .service-card h3 {
+            font-size: 22px;
+            margin-top: 15px;
+            color: #003d7a;
+        }
         .footer {
             background-color: #003d7a;
             color: #fff;
-            padding: 20px;
+            padding: 30px 0;
             text-align: center;
             margin-top: 40px;
+        }
+        .footer p {
+            margin: 0;
+        }
+        .footer .social-icons a {
+            color: #fff;
+            margin: 0 10px;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+        .footer .social-icons a:hover {
+            color: #ff6600;
+        }
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 32px;
+            }
+            .hero-section p {
+                font-size: 18px;
+            }
+            .cta-button {
+                font-size: 18px;
+                padding: 10px 20px;
+            }
         }
     </style>
 </head>
@@ -139,26 +175,27 @@
 <header class="header">
     <nav class="navbar navbar-expand-lg navbar-dark">
         <a class="navbar-brand" href="#">BANCO</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="#" th:href="@{/clientes}"><i class="fas fa-users"></i> Clientes</a>
-                    <a class="nav-link" href="#" th:href="@{/formularios}"><i class="fas fa-edit"></i> Formulario
-                    </a>
-
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" th:href="@{/formularios}"><i class="fas fa-edit"></i> Formulario</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-cogs"></i> Servicios
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#" th:href="@{/cuentas}">Cuenta Ahorro</a>
-                        <a class="dropdown-item" href="#" th:href="@{/prestamos}">Préstamos</a>
-                        <a class="dropdown-item" href="#" th:href="@{/transacciones}">Transacciones</a>
-                    </div>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#" th:href="@{/cuentas}">Cuenta Ahorro</a></li>
+                        <li><a class="dropdown-item" href="#" th:href="@{/prestamos}">Préstamos</a></li>
+                        <li><a class="dropdown-item" href="#" th:href="@{/transacciones}">Transacciones</a></li>
+                        <li><a class="dropdown-item" href="#" th:href="@{/garantias}">Garantías</a></li>
+                    </ul>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#" th:href="@{/informacion}"><i class="fas fa-info-circle"></i> Información</a>
@@ -171,7 +208,7 @@
     <div class="container">
         <h1>Bienvenido al Banco</h1>
         <p>Tu mejor opción en servicios financieros</p>
-        <a href="#" class="cta-button">Explora Nuestros Servicios</a>
+        <a th:href="@{/Banco/inversiones}" class="cta-button">Explora Nuestras Inversiones</a>
     </div>
 </section>
 <section class="services-section">
@@ -182,31 +219,37 @@
                 <div class="service-card">
                     <img src="https://www.bancodelpacifico.com/BancoPacifico/media/Personas/servicios/servicios-OPP2.jpg?ext=.jpg" alt="Cuenta Ahorro">
                     <h3>Cuenta Ahorro</h3>
-                    <p>Gestiona tu dinero con facilidad y seguridad.</p>
+                    <p>La mejor cuenta de ahorro para tus necesidades financieras.</p>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="service-card">
-                    <img src="https://www.bancodelpacifico.com/BancoPacifico/media/Personas/servicios/servicios-PagoDeServiciosConDebitoACuenta.jpg?ext=.jpg" alt="Préstamos Personales">
-                    <h3>Préstamos Personales</h3>
-                    <p>Obtén el financiamiento que necesitas con condiciones favorables.</p>
+                    <img src="https://www.bancodelpacifico.com/BancoPacifico/media/Personas/servicios/servicios-OPP1.jpg?ext=.jpg" alt="Préstamos">
+                    <h3>Préstamos</h3>
+                    <p>Obtén el préstamo que necesitas con las mejores tasas de interés.</p>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="service-card">
-                    <img src="https://www.bancodelpacifico.com/BancoPacifico/media/Personas/servicios/servicios-TransferenciaAutomaticaDeFondos2.jpg?ext=.jpg" alt="Inversiones">
-                    <h3>Inversiones</h3>
-                    <p>Invierte en oportunidades seguras y rentables.</p>
+                    <img src="https://www.bancodelpacifico.com/BancoPacifico/media/Personas/servicios/servicios-OPP3.jpg?ext=.jpg" alt="Transacciones">
+                    <h3>Transacciones</h3>
+                    <p>Realiza tus transacciones de forma segura y rápida.</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
 <footer class="footer">
-    <p>&copy; 2024 Banco Ejemplo. Todos los derechos reservados.</p>
+    <div class="container">
+        <p>&copy; 2024 Banco. Todos los derechos reservados.</p>
+        <div class="social-icons">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+    </div>
 </footer>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
