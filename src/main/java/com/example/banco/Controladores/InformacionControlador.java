@@ -9,6 +9,6 @@ public class InformacionControlador {
     // Mostrar la página de información
     @GetMapping("/informacion")
     public String showInformacion() {
-        return "informacion"; // Asegúrate de que el nombre del archivo Thymeleaf es informacion.html
+        return "Banco/informacion"; // Asegúrate de que el nombre del archivo Thymeleaf es informacion.html
     }
 }

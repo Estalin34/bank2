@@ -22,7 +22,7 @@ public class TransaccionControlador {
     @GetMapping("/transacciones")
     public String listarTransacciones(Model model) {
         model.addAttribute("transacciones", transaccionServicio.listarTodas());
-        return "transacciones"; // Este debe ser el nombre del archivo sin la extensión .html
+        return "Banco/transacciones"; // Nombre del archivo sin la extensión .html
     }
 
     @GetMapping("/transacciones/{id}")
@@ -30,8 +30,8 @@ public class TransaccionControlador {
         Optional<Transaccion> transaccion = transaccionServicio.obtenerPorId(id);
         if (transaccion.isPresent()) {
             model.addAttribute("transaccion", transaccion.get());
-            model.addAttribute("cuentas", cuentaServicio.listarTodas());
-            return "formularioTransaccion"; // Nombre del archivo sin la extensión .html
+            model.addAttribute("cuentas", cuentaServicio.listarTodas()); // Verifica que esta lista no sea null
+            return "Banco/formularioTransaccion";
         }
         return "redirect:/transacciones";
     }
@@ -41,8 +41,21 @@ public class TransaccionControlador {
     public String nuevaTransaccion(Model model) {
         model.addAttribute("transaccion", new Transaccion());
         model.addAttribute("cuentas", cuentaServicio.listarTodas());
-        return "formularioTransaccion"; // Este debe ser el nombre del archivo sin la extensión .html
+        return "Banco/formularioTransaccion"; // Nombre del archivo sin la extensión .html
     }
+
+    // Método para editar una transacción existente
+    @GetMapping("/transacciones/editar/{id}")
+    public String editarTransaccion(@PathVariable Long id, Model model) {
+        Optional<Transaccion> transaccion = transaccionServicio.obtenerPorId(id);
+        if (transaccion.isPresent()) {
+            model.addAttribute("transaccion", transaccion.get());
+            model.addAttribute("cuentas", cuentaServicio.listarTodas());
+            return "Banco/formularioTransaccion"; // Nombre del archivo sin la extensión .html
+        }
+        return "redirect:/transacciones";
+    }
+
 
     @PostMapping("/transacciones")
     public String guardarTransaccion(@ModelAttribute Transaccion transaccion) {

@@ -1,5 +1,6 @@
 package com.example.banco.Controladores;
 
+import com.example.banco.Entidad.Garantia;
 import com.example.banco.Entidad.Prestamo;
 import com.example.banco.Servicios.ClienteServicio;
 import com.example.banco.Servicios.PrestamoServicio;
@@ -35,7 +36,7 @@ public class PrestamoControlador {
     @GetMapping("/prestamos")
     public String listarPrestamos(Model model) {
         model.addAttribute("prestamos", prestamoServicio.listarTodos());
-        return "prestamos";
+        return "Banco/prestamos";
     }
 
     // Mostrar un préstamo específico por ID
@@ -45,7 +46,7 @@ public class PrestamoControlador {
         if (prestamo.isPresent()) {
             model.addAttribute("prestamo", prestamo.get());
             model.addAttribute("clientes", clienteServicio.listarTodos());
-            return "formularioPrestamo";
+            return "Banco/formularioPrestamo";
         }
         return "redirect:/prestamos";
     }
@@ -55,7 +56,7 @@ public class PrestamoControlador {
     public String nuevoPrestamo(Model model) {
         model.addAttribute("prestamo", new Prestamo());
         model.addAttribute("clientes", clienteServicio.listarTodos());
-        return "formularioPrestamo";
+        return "Banco/formularioPrestamo";
     }
 
     @GetMapping("/prestamos/editar/{id}")
@@ -64,7 +65,7 @@ public class PrestamoControlador {
         if (prestamo.isPresent()) {
             model.addAttribute("prestamo", prestamo.get());
             model.addAttribute("clientes", clienteServicio.listarTodos()); // Asegúrate de que esto devuelve una lista válida
-            return "formularioPrestamo";
+            return "Banco/formularioPrestamo";
         }
         return "redirect:/prestamos";
     }
@@ -76,8 +77,9 @@ public class PrestamoControlador {
         if (prestamo.getCliente() == null || prestamo.getCliente().getId() == null) {
             model.addAttribute("error", "El cliente es obligatorio.");
             model.addAttribute("clientes", clienteServicio.listarTodos());
-            return "formularioPrestamo";
+            return "Banco/formularioPrestamo";
         }
+
 
         prestamoServicio.guardar(prestamo);
 

@@ -27,7 +27,7 @@ public class FormularioControlador {
     @GetMapping("/formularios")
     public String mostrarFormulario(Model model) {
         model.addAttribute("formulario", new Formulario());
-        return "formulario";
+        return "Banco/formulario";
     }
 
     @PostMapping("/formularios")
@@ -39,7 +39,7 @@ public class FormularioControlador {
     @GetMapping("/confirmacion")
     public String mostrarConfirmacion(@RequestParam Long idFormulario, Model model) {
         model.addAttribute("idFormulario", idFormulario);
-        return "pantalla";
+        return "Banco/pantalla";
     }
 
     }

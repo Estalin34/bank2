@@ -23,7 +23,7 @@ public class GarantiaControlador {
     @GetMapping("/garantias")
     public String listarGarantias(Model model) {
         model.addAttribute("garantias", garantiaServicio.listarTodas());
-        return "garantias"; // Asegúrate de que el nombre del archivo Thymeleaf es garantias.html
+        return "Banco/garantias"; // Asegúrate de que el nombre del archivo Thymeleaf es garantias.html
     }
 
     // Mostrar una garantía específica por ID
@@ -33,7 +33,7 @@ public class GarantiaControlador {
         if (garantia.isPresent()) {
             model.addAttribute("garantia", garantia.get());
             model.addAttribute("clientes", clienteServicio.listarTodos());
-            return "formularioGarantia"; // Asegúrate de que el nombre del archivo Thymeleaf es formularioGarantia.html
+            return "Banco/formularioGarantia"; // Asegúrate de que el nombre del archivo Thymeleaf es formularioGarantia.html
         }
         return "redirect:/garantias"; // Redirige si no se encuentra la garantía
     }
@@ -43,7 +43,19 @@ public class GarantiaControlador {
     public String nuevaGarantia(Model model) {
         model.addAttribute("garantia", new Garantia());
         model.addAttribute("clientes", clienteServicio.listarTodos());
-        return "formularioGarantia"; // Asegúrate de que el nombre del archivo Thymeleaf es formularioGarantia.html
+        return "Banco/formularioGarantia"; // Asegúrate de que el nombre del archivo Thymeleaf es formularioGarantia.html
+    }
+
+    // Mostrar el formulario para editar una garantía existente
+    @GetMapping("/garantias/editar/{id}")
+    public String editarGarantia(@PathVariable Long id, Model model) {
+        Optional<Garantia> garantia = garantiaServicio.obtenerPorId(id);
+        if (garantia.isPresent()) {
+            model.addAttribute("garantia", garantia.get());
+            model.addAttribute("clientes", clienteServicio.listarTodos());
+            return "Banco/formularioGarantia"; // Asegúrate de que el nombre del archivo Thymeleaf es formularioGarantia.html
+        }
+        return "redirect:/garantias"; // Redirige si no se encuentra la garantía
     }
 
     // Guardar una garantía (nueva o editada)

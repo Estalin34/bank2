@@ -18,17 +18,17 @@ public class ClienteControlador {
     @GetMapping
     public String listar(Model model) {
         model.addAttribute("clientes", clienteServicio.listarTodos());
-        return "clientes"; // Asegúrate de que el nombre del archivo Thymeleaf es clientes.html
+        return "Banco/clientes"; // Asegúrate de que el nombre del archivo Thymeleaf es clientes.html
     }
 
-    // Mostrar el formulario para crear un nuevo cliente
+
     @GetMapping("/nuevo")
     public String mostrarFormulario(Model model) {
         model.addAttribute("cliente", new Cliente());
-        return "formulario_cliente"; // Asegúrate de que el nombre del archivo Thymeleaf es formulario_cliente.html
+        return "Banco/formulario_cliente";
     }
 
-    // Guardar un cliente (nuevo o editado)
+
     @PostMapping
     public String guardar(@ModelAttribute Cliente cliente) {
         clienteServicio.guardar(cliente);
@@ -41,9 +41,9 @@ public class ClienteControlador {
         Cliente cliente = clienteServicio.obtenerPorId(id);
         if (cliente != null) {
             model.addAttribute("cliente", cliente);
-            return "formulario_cliente"; // Asegúrate de que el nombre del archivo Thymeleaf es formulario_cliente.html
+            return "Banco/formulario_cliente";
         }
-        return "redirect:/clientes"; // Redirige si no se encuentra el cliente
+        return "redirect:/clientes";
     }
 
     // Eliminar un cliente

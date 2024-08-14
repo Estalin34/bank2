@@ -21,7 +21,7 @@ public class CuentaControlador {
     @GetMapping("/cuentas")
     public String listar(Model model) {
         model.addAttribute("cuentas", cuentaServicio.listarTodas());
-        return "cuentas";
+        return "Banco/cuentas";
     }
 
     // Mostrar el formulario para crear una nueva cuenta
@@ -29,7 +29,7 @@ public class CuentaControlador {
     public String mostrarFormulario(Model model) {
         model.addAttribute("cuenta", new Cuenta());
         model.addAttribute("clientes", clienteServicio.listarTodos()); // Añadir la lista de clientes al modelo
-        return "formulario_cuenta";
+        return "Banco/formulario_cuenta";
     }
 
     // Guardar una cuenta (nueva o editada)
@@ -46,7 +46,7 @@ public class CuentaControlador {
         if (cuenta != null) {
             model.addAttribute("cuenta", cuenta);
             model.addAttribute("clientes", clienteServicio.listarTodos()); // Añadir la lista de clientes al modelo
-            return "formulario_cuenta";
+            return "Banco/formulario_cuenta";
         }
         return "redirect:/cuentas";
     }
