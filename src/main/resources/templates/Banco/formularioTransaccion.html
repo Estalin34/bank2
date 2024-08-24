@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Transacción</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+        .btn-primary {
+            margin-top: 20px;
+        }
+        .btn-secondary {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 th:text="${transaccion.id == null ? 'Agregar Nueva Transacción' : 'Editar Transacción'}"></h1>
+
+    <!-- Mensajes de éxito o error -->
+    <div th:if="${message}" class="alert alert-success" role="alert">
+        <p th:text="${message}"></p>
+    </div>
+
+    <form th:action="@{/transacciones}" th:object="${transaccion}" method="post">
+        <!-- Campo oculto para el ID de la transacción -->
+        <input type="hidden" th:field="*{id}" />
+
+        <!-- Campo de fecha -->
+        <div class="form-group">
+            <label for="fecha">Fecha</label>
+            <input type="date" id="fecha" th:field="*{fecha}" class="form-control" required />
+        </div>
+
+        <!-- Campo de monto -->
+        <div class="form-group">
+            <label for="monto">Monto</label>
+            <input type="number" step="0.01" id="monto" th:field="*{monto}" class="form-control" required />
+        </div>
+
+        <!-- Selección de cuenta -->
+        <div class="form-group">
+            <label for="cuenta">Cuenta</label>
+            <select id="cuenta" th:field="*{cuenta.id}" class="form-control" required>
+                <option value="" th:text="'Seleccionar Cuenta'"></option>
+                <option th:each="cuenta : ${cuentas}" th:value="${cuenta.id}" th:text="${cuenta.numeroCuenta}"></option>
+            </select>
+        </div>
+
+        <!-- Botón para guardar la transacción -->
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <!-- Botón para cancelar y volver a la lista de transacciones -->
+        <a href="#" class="btn btn-secondary" th:href="@{/transacciones}">Cancelar</a>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
